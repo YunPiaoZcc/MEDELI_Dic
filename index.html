@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="icon" href="./resources/img/medeli.ico" type="image/x-icon">
+
+	<!-- 兼容360浏览器及搜狗等多内核浏览器显示异常的问题，指定运行当前页面的浏览器使用何种渲染引擎的声明 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=9">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+
+	<title>MEDELI Dictionary</title>
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+
+	<script type="text/javascript" src="./js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="./js/jszip.js"></script>
+	<script type="text/javascript" src="./js/xlsx.min.js"></script>
+	<script type="text/javascript" src="./js/FileSaver.js"></script>
+
+	<script src="./js/store_legacy_min.js"></script>
+	<script type="text/javascript" src="./js/bootstrap-typeahead.js"></script>
+	<script type="text/javascript" src="./js/bootstrap.js"></script>
+	<script type="text/javascript" src="./js/main.js"></script>
+</head>
+<body style="max-width: 400px;">
+	<div style="margin: 0; padding: 0; margin-right: 20%;">
+		<img src="./resources/img/logo.svg" class="" alt="" class="col-sm-12" style="">
+	</div>
+	<div style="float: right; margin-left: -30px; margin-right: 5px; margin-top: -38px;">
+		<ul style="list-style: none; font-weight: bold; font-size: 15px; text-align: center;">
+			<li><a id="a" href="#">A</a></li>
+			<li><a id="b" href="#">B</a></li>
+			<li><a id="c" href="#">C</a></li>
+			<li><a id="d" href="#">D</a></li>
+			<li><a id="e" href="#">E</a></li>
+			<li><a id="f" href="#">F</a></li>
+			<li><a id="g" href="#">G</a></li>
+			<li><a id="h" href="#">H</a></li>
+			<li><a id="i" href="#">I</a></li>
+			<li><a id="j" href="#">J</a></li>
+			<li><a id="k" href="#">K</a></li>
+			<li><a id="l" href="#">L</a></li>
+			<li><a id="m" href="#">M</a></li>
+			<li><a id="n" href="#">N</a></li>
+			<li><a id="o" href="#">O</a></li>
+			<li><a id="p" href="#">P</a></li>
+			<li><a id="q" href="#">Q</a></li>
+			<li><a id="r" href="#">R</a></li>
+			<li><a id="s" href="#">S</a></li>
+			<li><a id="t" href="#">T</a></li>
+			<li><a id="u" href="#">U</a></li>
+			<li><a id="v" href="#">V</a></li>
+			<li><a id="w" href="#">W</a></li>
+			<li><a id="x" href="#">X</a></li>
+			<li><a id="y" href="#">Y</a></li>
+			<li><a id="z" href="#">Z</a></li>
+		</ul>
+	</div>
+	<div class="mainView" style="height: 100%">   
+		<form class="form1" id="form1" style="margin-top: 10px;">
+			<form class="form-horizontal">
+				<div class="form-group" style="margin-left: -16px; margin-bottom: 5px;">
+					<label for="englishTxt" class="col-sm-2 control-label">English:</label>
+					
+					<button type="button" id="clear" class="btn btn-danger btn-xs col-sm-1" style="margin-top: -5px; float: right; margin-right: 6px; font-size: 14px; font-weight: bold; padding-top: 3px; padding-bottom: 0px;">
+						<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 清空 
+					</button>
+					<button type="button" id="translate" class="btn btn-primary btn-xs col-sm-1" style="margin-top: -5px; float: right; margin-right: 5px; font-size: 14px; font-weight: bold; padding-top: 3px; padding-bottom: 0px;">
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span> 翻译 
+					</button>
+					<div class="dropdown" style="float: right; margin-right: 5px; margin-top: -5px;">
+						<button class="btn btn-success btn-xs dropdown-toggle" style="font-size: 14px; font-weight: bold; padding-top: 3px; padding-bottom: 0px;" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+						分类
+						<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="min-width: 130px; background-color: #eee;">
+							<li><a id="VOICE" style="font-weight: bold;">VOICE</a></li>
+							<li><a id="STYLE" style="font-weight: bold;">STYLE</a></li>
+							<li><a id="PRODUCTION" style="font-weight: bold;">PRODUCTION</a></li>
+							<li><a id="OTHER" style="font-weight: bold;">OTHER</a></li>
+							<li><a id="MUSIC" style="font-weight: bold;">MUSIC</a></li>
+							<li><a id="FUNCTION" style="font-weight: bold;">FUNCTION</a></li>
+							<li><a id="EFFECT" style="font-weight: bold;">EFFECT</a></li>
+							<li><a id="CONNECTOR" style="font-weight: bold;">CONNECTOR</a></li>
+						</ul>
+					</div>
+
+					<div class="col-sm-6">
+						<input type="text" class="col-sm-12" id="englishTxt" data-provide="typeahead" style="width: 100%; padding-left: 5px;" />
+					</div>
+
+				</div>
+				<input type="text" class="col-sm-12" id="phonogram" style="width: 65%; margin-top: 0px; padding-left: 5px;" readonly="readonly">
+				<img src="./resources/img/speak.svg" id="voice" alt="">
+				<audio id="player" src="" display="none">
+				</audio>
+				<button type="button" id="prev" class="btn btn-success btn-xs col-sm-1" style="margin-top: 0px; float: right; margin-right: 10px; font-size: 14px; font-weight: bold; padding-top: 3px; padding-bottom: 0px;">
+					<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+				</button>
+				<div class="form-group" style="margin-left: -16px; margin-top: 0px;">
+					<label for="chineseTxt" class="col-sm-2 control-label">中文:</label>
+					<div class="col-sm-6">
+						<input type="text" class="col-sm-12" id="chineseTxt" data-provide="typeahead" style="width: 80%; padding-left: 5px;" />
+						<button type="button" id="next" class="btn btn-success btn-xs col-sm-1" style="margin-top: 0px; float: right; margin-right: 3px; font-size: 14px; font-weight: bold; padding-top: 3px; padding-bottom: 0px;">
+							<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> 
+						</button>
+					</div>
+				</div>
+				<div class="form-group" style="margin-left: -16px;">
+					<label for="" class="col-sm-2 control-label">Yamaha:</label>
+					<div class="col-sm-6">
+						<input type="text" class="col-sm-6" id="yamaha" readonly="readonly" style="width: 100%; padding-left: 5px;";>
+					</div>
+				</div>
+				<div class="form-group" style="margin-left: -16px;">
+					<label for="" class="col-sm-2 control-label">Casio:</label>
+					<div class="col-sm-6">
+						<input type="text" class="col-sm-6" id="casio" readonly="readonly" style="width: 100%; padding-left: 5px;">
+					</div>
+				</div>
+			</form>
+			<label for="">说明：</label>
+			<div id="desc" style="width: 95%; height: 170px; border: solid 1px #888; overflow:auto; padding-left: 5px; padding-top: 3px; padding-right: 5px; background-color: white;">
+			</div>
+		</form>
+	</body>
+	</html>

@@ -1,0 +1,36 @@
+﻿
+/* 通用设置 */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* 主界面 */
+.mainView {
+    width: 100%;
+    font-size: 14px;
+    font-family: Helvetica, Arial, sans-serif;
+    border: solid 5px #eee;
+    padding: 0px 15px 8px 15px;
+    background-color: #eeeeee;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.letter a {
+     margin-left: 16px;
+}
+
+    
+
+
+
+
+
+
+
+
+
+
+
