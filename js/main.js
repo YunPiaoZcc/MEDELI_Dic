@@ -44,7 +44,7 @@ $(function () {
             // 将要处理的sheet转换为数组json对象：[{ }, { }, { }]
             var sheetArrayJson = XLSX.utils.sheet_to_json(sheet, {header: "A"});
 
-            // var category = ["VOICE", "STYLE", "DEVELOPMENT", "OTHER", "MUSIC", "FUNCTION", "EFFECT", "CONNECTOR"]
+            // var category = ["VOICE", "STYLE", "PRODUCTION", "OTHER", "MUSIC", "FUNCTION", "EFFECT", "CONNECTOR"]
 
             for(var z=1; z < sheetArrayJson.length; z++){
             	if (sheetArrayJson[z]["A"]) {
@@ -95,37 +95,24 @@ $(function () {
               }
             }
 
-            // console.log(EnglishObj);
-
             var voiceIndex = EngDatabase.indexOf("VOICE");
             var styleIndex = EngDatabase.indexOf("STYLE");
-            var productionIndex = EngDatabase.indexOf("DEVELOPMENT");
-            var otherIndex = EngDatabase.indexOf("OTHER");
-            var musicIndex = EngDatabase.indexOf("MUSIC");
-            var functionIndex = EngDatabase.indexOf("FUNCTION");
             var effectIndex = EngDatabase.indexOf("EFFECT");
+            var functionIndex = EngDatabase.indexOf("FUNCTION");
+            var otherIndex = EngDatabase.indexOf("OTHER");
             var connectorIndex = EngDatabase.indexOf("CONNECTOR");
-
+            var musicIndex = EngDatabase.indexOf("MUSIC");
+            var developmentIndex = EngDatabase.indexOf("DEVELOPMENT");
+            
 
             var voiceDatabase = EngDatabase.slice(voiceIndex + 1, styleIndex);
-            var styleDatabase = EngDatabase.slice(styleIndex + 1, productionIndex);
-            var productionDatabase = EngDatabase.slice(productionIndex + 1, otherIndex);
-            var otherDatabase = EngDatabase.slice(otherIndex + 1, musicIndex);
-            var musicDatabase = EngDatabase.slice(musicIndex + 1, functionIndex);
+            var styleDatabase = EngDatabase.slice(styleIndex + 1, functionIndex);
             var functionDatabase = EngDatabase.slice(functionIndex + 1, effectIndex);
-            var effectDatabase = EngDatabase.slice(effectIndex + 1, connectorIndex);
-            var connectorDatabase = EngDatabase.slice(connectorIndex + 1, EngDatabase.length);
-
-
-            // console.log(voiceDatabase);
-            // console.log(styleDatabase);
-            // console.log(productionDatabase);
-            // console.log(otherDatabase);
-            // console.log(musicDatabase);
-            // console.log(functionDatabase);
-            // console.log(effectDatabase);
-            // console.log(connectorDatabase);
-
+            var effectDatabase = EngDatabase.slice(effectIndex + 1, otherIndex);
+            var otherDatabase = EngDatabase.slice(otherIndex + 1, connectorIndex);
+            var connectorDatabase = EngDatabase.slice(connectorIndex + 1, musicIndex);
+            var musicDatabase = EngDatabase.slice(musicIndex + 1, developmentIndex);
+            var developmentDatabase = EngDatabase.slice(developmentIndex + 1, EngDatabase.length);
 
             for(var y=1; y < sheetArrayJson.length; y++){
               if (sheetArrayJson[y]["D"] != undefined) {
@@ -237,7 +224,7 @@ $(function () {
             });
 
             $("#DEVELOPMENT").click(function() {
-              $("#englishTxt").val(productionDatabase[0]);
+              $("#englishTxt").val(developmentDatabase[0]);
               $("#translate").click();
             });
 
