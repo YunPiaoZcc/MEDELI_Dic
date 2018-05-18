@@ -6,7 +6,7 @@
 $(function () {
 
         // 列表路径
-        var url = "./resources/database/" + "产品功能列表20180515.xlsx";       
+        var url = "./resources/database/" + "产品功能列表20180517.xlsx";       
 
         var oReq = new XMLHttpRequest();
         oReq.open("GET", url, true);
@@ -44,7 +44,7 @@ $(function () {
             // 将要处理的sheet转换为数组json对象：[{ }, { }, { }]
             var sheetArrayJson = XLSX.utils.sheet_to_json(sheet, {header: "A"});
 
-            // var category = ["VOICE", "STYLE", "PRODUCTION", "OTHER", "MUSIC", "FUNCTION", "EFFECT", "CONNECTOR"]
+            // var category = ["VOICE", "STYLE", "DEVELOPMENT", "OTHER", "MUSIC", "FUNCTION", "EFFECT", "CONNECTOR"]
 
             for(var z=1; z < sheetArrayJson.length; z++){
             	if (sheetArrayJson[z]["A"]) {
@@ -99,7 +99,7 @@ $(function () {
 
             var voiceIndex = EngDatabase.indexOf("VOICE");
             var styleIndex = EngDatabase.indexOf("STYLE");
-            var productionIndex = EngDatabase.indexOf("PRODUCTION");
+            var productionIndex = EngDatabase.indexOf("DEVELOPMENT");
             var otherIndex = EngDatabase.indexOf("OTHER");
             var musicIndex = EngDatabase.indexOf("MUSIC");
             var functionIndex = EngDatabase.indexOf("FUNCTION");
@@ -236,7 +236,7 @@ $(function () {
               $("#translate").click();
             });
 
-            $("#PRODUCTION").click(function() {
+            $("#DEVELOPMENT").click(function() {
               $("#englishTxt").val(productionDatabase[0]);
               $("#translate").click();
             });
